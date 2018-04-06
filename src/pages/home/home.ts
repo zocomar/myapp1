@@ -20,3 +20,4 @@ export class HomePage {
       this.tabBarElement.style.display = 'flex';
     }, 4000);
   }
+}
