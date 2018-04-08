@@ -18,6 +18,6 @@ export class HomePage {
     setTimeout(() => {
       this.splash = false;
       this.tabBarElement.style.display = 'flex';
-    }, 4000);
+    }, 8000);
   }
 }

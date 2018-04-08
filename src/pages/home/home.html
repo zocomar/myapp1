@@ -1,5 +1,7 @@
+
+
 <div id="custom-overlay" [style.display]="splash ? 'flex': 'none'">
-  <div class="flb">
+    <div class="flb">
     <div class="Aligner-item Aligner-item--top"></div>
     <img src="assets/logod.svg">
     <div class="Aligner-item Aligner-item--bottom"></div>
@@ -8,16 +10,31 @@
 
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title>ZocoClean</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Bienvenido a Zococlean</h2>
-  <p>
-    Esta es una app de prueba modificada en VSC para comprobar el funcionamiento de la Framework
-  </p>
-  <p>
-    Estamos trabajando en interactuar con las Lavadoras y secadoras
-  </p>
+<ion-content class="background">
+	<ion-card>
+		<ion-card-header>
+			
+		</ion-card-header>
+		<ion-card-content>
+			<ion-list no-line>
+				<ion-item>
+					<ion-input type="text" placeholder="Username"></ion-input>
+				</ion-item>
+				<ion-item>
+					<ion-input type="password" placeholder="Password"></ion-input>
+				</ion-item>
+				<a>¿Has olvidado tu contraseña? <b>Pulsa aqui</b></a>
+				<button ion-button block outline color="light">Log in</button>
+				<p>OR</p>
+				<button ion-button block color="facebook">
+					<ion-icon name="logo-facebook"></ion-icon>Entrar con facebook
+				</button>
+			</ion-list>
+		</ion-card-content>
+	</ion-card>
+	<button class="bottom" ion-button clear full color="light">¿No tienes aún una cuenta? Registrate</button>
 </ion-content>
