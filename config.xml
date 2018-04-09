@@ -89,7 +89,7 @@
         <variable name="MAX_STORE" value="2" />
     </plugin>
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
-    <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="~7.0.0" />
     <preference name="SplashScreen" value="screen" />
+    <engine name="ios" spec="~4.5.4" />
 </widget>
