@@ -99,4 +99,5 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Allow the app to use your camera" />
         <variable name="PHOTOLIBRARY_USAGE_DESCRIPTION" value="Allow the app to access your photos" />
     </plugin>
+    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
 </widget>
