@@ -3,6 +3,7 @@ import { NavController } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera } from '@ionic-native/camera';
 
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -12,6 +13,7 @@ export class ContactPage {
   qrData = null;
   createdCode = null;
   scannedCode = null;
+  
  
   constructor(private barcodeScanner: BarcodeScanner) { }
  
@@ -26,5 +28,4 @@ export class ContactPage {
         console.log('Error: ', err);
     });
   }
- 
 }

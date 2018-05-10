@@ -14,6 +14,18 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
+
+export const firebaseConfig = {
+    apiKey: "AIzaSyAf6PF-Nr0UZJfVYuHQWU96LvVfW48b6jo",
+    authDomain: "test-fcd8c.firebaseapp.com",
+    databaseURL: "https://test-fcd8c.firebaseio.com",
+    projectId: "test-fcd8c",
+    storageBucket: "test-fcd8c.appspot.com",
+    messagingSenderId: "1059415642973"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -25,7 +37,9 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    AngularFireModule.initializeApp(firebaseConfig,'datotest'),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
