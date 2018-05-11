@@ -17,13 +17,13 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
-export const firebaseConfig = {
-  apiKey: "AIzaSyCODIQiBPPdPUzVV464Pq7K-XqGLuasJmM",
-  authDomain: "demo104-ec024.firebaseapp.com",
-  databaseURL: "https://demo104-ec024.firebaseio.com",
-  projectId: "demo104-ec024",
-  storageBucket: "",
-  messagingSenderId: "666091481637"
+const firebaseConfig = {
+    apiKey: "AIzaSyCODIQiBPPdPUzVV464Pq7K-XqGLuasJmM",
+    authDomain: "demo104-ec024.firebaseapp.com",
+    databaseURL: "https://demo104-ec024.firebaseio.com",
+    projectId: "demo104-ec024",
+    storageBucket: "demo104-ec024.appspot.com",
+    messagingSenderId: "666091481637"
 };
 
 @NgModule({
