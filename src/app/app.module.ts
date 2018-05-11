@@ -18,12 +18,12 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAf6PF-Nr0UZJfVYuHQWU96LvVfW48b6jo",
-    authDomain: "test-fcd8c.firebaseapp.com",
-    databaseURL: "https://test-fcd8c.firebaseio.com",
-    projectId: "test-fcd8c",
-    storageBucket: "test-fcd8c.appspot.com",
-    messagingSenderId: "1059415642973"
+    apiKey: "AIzaSyCODIQiBPPdPUzVV464Pq7K-XqGLuasJmM",
+    authDomain: "demo104-ec024.firebaseapp.com",
+    databaseURL: "https://demo104-ec024.firebaseio.com",
+    projectId: "demo104-ec024",
+    storageBucket: "demo104-ec024.appspot.com",
+    messagingSenderId: "666091481637"
 };
 
 @NgModule({
@@ -38,7 +38,7 @@ const firebaseConfig = {
     BrowserModule,
     IonicModule.forRoot(MyApp),
     NgxQRCodeModule,
-    AngularFireModule.initializeApp(firebaseConfig,'datotest'),
+    AngularFireModule.initializeApp(firebaseConfig,'demo104'),
     AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],

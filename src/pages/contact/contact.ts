@@ -6,6 +6,7 @@ import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 
 
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -17,7 +18,7 @@ export class ContactPage {
   scannedCode = null;
   tasksRef: AngularFireList<any>;
   tasks: Observable<any[]>;
-
+  
  
   constructor(
     private barcodeScanner: BarcodeScanner,
@@ -44,5 +45,4 @@ export class ContactPage {
         console.log('Error: ', err);
     });
   }
- 
 }
