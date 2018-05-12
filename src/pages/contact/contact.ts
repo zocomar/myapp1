@@ -19,6 +19,7 @@ export class ContactPage {
   tasksRef: AngularFireList<any>;
   tasks: Observable<any[]>;
   
+  
  
   constructor(
     private barcodeScanner: BarcodeScanner,
@@ -38,6 +39,7 @@ export class ContactPage {
     this.createdCode = this.qrData;
   }
  
+  
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       this.scannedCode = barcodeData.text;
@@ -45,4 +47,47 @@ export class ContactPage {
         console.log('Error: ', err);
     });
   }
+  createTask(){
+    let newTaskModal = this.alertCtrl.create({
+      title: 'New Task',
+      message: "Enter a title for your new task",
+      inputs: [
+        {
+          name: 'title',
+          placeholder: 'Title'
+        },
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Save',
+          handler: data => {
+            this.tasksRef.push({
+              title: this.scannedCode,
+              done: false
+            });
+          }
+        }
+      ]
+    });
+    newTaskModal.present( newTaskModal );
+  }
+
+  updateTask( task ){
+    this.tasksRef.update( task.key,{
+      title: task.title,
+      done: !task.done
+    });
+  }
+
+  removeTask( task ){
+    console.log( task );
+    this.tasksRef.remove( task.key );
+  }
 }
+
