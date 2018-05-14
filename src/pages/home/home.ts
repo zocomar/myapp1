@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @Component({
   selector: 'page-home',
@@ -9,7 +10,9 @@ export class HomePage {
   tabBarElement: any;
   splash = true;
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    public auth : AuthProvider) {
     this.tabBarElement = document.querySelector('.tabbar');
   }
 
@@ -20,4 +23,7 @@ export class HomePage {
       this.tabBarElement.style.display = 'flex';
     }, 8000);
   }
+  cerrarSesion(){
+    this.auth.logout();
+}
 }

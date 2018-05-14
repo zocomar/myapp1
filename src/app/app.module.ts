@@ -7,6 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
+import { LoginPage } from '../pages/login/login';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -16,6 +17,8 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AuthProvider } from '../providers/auth/auth';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCODIQiBPPdPUzVV464Pq7K-XqGLuasJmM",
@@ -29,6 +32,7 @@ const firebaseConfig = {
 @NgModule({
   declarations: [
     MyApp,
+    LoginPage,
     AboutPage,
     ContactPage,
     HomePage,
@@ -39,11 +43,13 @@ const firebaseConfig = {
     IonicModule.forRoot(MyApp),
     NgxQRCodeModule,
     AngularFireModule.initializeApp(firebaseConfig,'demo104'),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    LoginPage,
     AboutPage,
     ContactPage,
     HomePage,
@@ -54,7 +60,8 @@ const firebaseConfig = {
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
-    NgxQRCodeModule
+    NgxQRCodeModule,
+    AuthProvider
   ]
 })
 export class AppModule {}
