@@ -18,6 +18,7 @@ export class ContactPage {
   createdCode = null;
   scannedCode = null;
   tasksRef: AngularFireList<any>;
+  tasksRef2: AngularFireList<any>;
   tasks: Observable<any[]>;
   user : any ;
   
@@ -74,7 +75,7 @@ export class ContactPage {
           handler: data => {
             this.tasksRef.push({
               title: this.scannedCode + this.user,
-              done: false
+              done: this.user
             });
           }
         }
