@@ -58,7 +58,7 @@ export class ContactPage {
       message: "Enter a title for your new task",
       inputs: [
         {
-          name: 'title',
+          name: this.scannedCode,
           placeholder: 'Title'
         },
       ],
