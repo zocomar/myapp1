@@ -27,7 +27,10 @@ export class ContactPage {
     private barcodeScanner: BarcodeScanner,
     public navCtrl: NavController,
     public alertCtrl: AlertController,
-    public database: AngularFireDatabase) {
+    public database: AngularFireDatabase,
+    public auth : AuthProvider) {
+      this.auth.getCurrentUser().subscribe(user => 
+      this.user = user.uid);
       this.tasksRef = this.database.list('tasks');
       this.tasks = this.tasksRef.snapshotChanges()
       .map(changes => {
@@ -70,7 +73,7 @@ export class ContactPage {
           text: 'Save',
           handler: data => {
             this.tasksRef.push({
-              title: this.scannedCode,
+              title: this.scannedCode + this.user,
               done: false
             });
           }
