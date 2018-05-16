@@ -25,7 +25,10 @@ export class AuthProvider {
     .then(user=>Promise.resolve(user))
     .catch(err=>Promise.reject(err))
  }
-
+//usuario 
+getCurrentUser(){
+  return this.afAuth.authState;
+  }
  // Login de usuario
  loginUser(email:string, password:string){
    return this.afAuth.auth.signInWithEmailAndPassword(email, password)

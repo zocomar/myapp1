@@ -20,6 +20,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 export class LoginPage {
 
   user= { email : '', password : ''};
+  
 
   constructor(
     public navCtrl: NavController,
@@ -34,7 +35,7 @@ export class LoginPage {
   }
   
   login()
-{
+{  
     this.auth.loginUser(this.user.email,this.user.password ).then((user) => {
       }
     )

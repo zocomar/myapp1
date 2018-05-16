@@ -19,6 +19,7 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCODIQiBPPdPUzVV464Pq7K-XqGLuasJmM",
@@ -61,7 +62,8 @@ const firebaseConfig = {
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     BarcodeScanner,
     NgxQRCodeModule,
-    AuthProvider
+    AuthProvider,
+    AuthServiceProvider
   ]
 })
 export class AppModule {}
