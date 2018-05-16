@@ -59,7 +59,7 @@ export class ContactPage {
       inputs: [
         {
           name: this.scannedCode,
-          placeholder: 'Title'
+          placeholder: this.scannedCode
         },
       ],
       buttons: [
