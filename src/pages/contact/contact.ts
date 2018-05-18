@@ -74,7 +74,8 @@ export class ContactPage {
           handler: data => {
             this.tasksRef.push({
               title: this.scannedCode + this.user,
-              done: false
+              done: false,
+              id: '12345'
             });
           }
         }
