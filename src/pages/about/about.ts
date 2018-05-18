@@ -32,6 +32,15 @@ export class AboutPage {
       });
     }
   
+    pickId(id: string){
+      this.tasksRef = this.database.list('tasks', 
+        ref => ref.orderByChild('id').equalTo(id));
+        this.tasks = this.tasksRef.snapshotChanges()
+      .map(changes => {
+        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
+      });
+    }
+
     createTask(){
       let newTaskModal = this.alertCtrl.create({
         title: 'New Task',
