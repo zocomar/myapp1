@@ -14,10 +14,21 @@
 
 <ion-content>
   <ion-list>
+    <ion-item>
+      <ion-label>IdUsuario</ion-label>
+      <ion-select [(ngModel)]="id" (ionChange)="pickId(id)">
+        <ion-option value="gk81XDASuDWuUlTWDNRyfJu2SO33">gk81XDASuDWuUlTWDNRyfJu2SO33</ion-option>
+        <ion-option value="MLG0LPjzzFTuXeXCP1M9XxQZhkA2">MLG0LPjzzFTuXeXCP1M9XxQZhkA2</ion-option>
+      </ion-select>
+    </ion-item>
+  </ion-list>
+
+  <ion-list>
     <ion-item-sliding *ngFor='let task of tasks | async'>
       <ion-item>
-        <ion-label>{{ task.title }}</ion-label>
-        <ion-checkbox (ionChange)="updateTask( task )" [checked]="task.done"></ion-checkbox>
+        <p>Codigo: {{ task.title }}</p>
+        <p>Id Usuario:{{ task.id }}</p>
+        <p>Fecha:{{ task.fecha }}</p>
       </ion-item>
        <ion-item-options>
         <button ion-button color="danger" (click)="removeTask( task )">
