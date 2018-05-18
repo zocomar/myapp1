@@ -21,6 +21,10 @@ export class ContactPage {
   tasksRef2: AngularFireList<any>;
   tasks: Observable<any[]>;
   user : any ;
+  fechaCorta: string = new Date().toISOString();
+  fecha: string = this.fechaCorta;
+  minFecha: string = (new Date().getFullYear()-5).toString();
+  maxFecha: string = (new Date().getFullYear()+5).toString();
   
   
  
@@ -74,8 +78,9 @@ export class ContactPage {
           text: 'Save',
           handler: data => {
             this.tasksRef.push({
-              title: this.scannedCode + this.user,
-              done: this.user
+              title: this.scannedCode + 'dos' ,
+              id: this.user,
+              fecha: this.fechaCorta
             });
           }
         }
@@ -87,7 +92,8 @@ export class ContactPage {
   updateTask( task ){
     this.tasksRef.update( task.key,{
       title: task.title,
-      done: !task.done
+      fecha: this.fechaCorta
+      
     });
   }
 

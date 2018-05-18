@@ -16,9 +16,11 @@ export class AboutPage {
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
   
+  
 
 
   constructor(
+      
       public navCtrl: NavController, 
       public alertCtrl: AlertController,
       public database: AngularFireDatabase
@@ -52,7 +54,7 @@ export class AboutPage {
             handler: data => {
               this.tasksRef.push({
                 title: data.title,
-                done: false
+                id: 'Corregido'
               });
             }
           }
@@ -64,7 +66,7 @@ export class AboutPage {
     updateTask( task ){
       this.tasksRef.update( task.key,{
         title: task.title,
-        done: !task.done
+        id: 'Corregido'
       });
     }
   

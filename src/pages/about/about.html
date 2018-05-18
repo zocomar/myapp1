@@ -16,8 +16,9 @@
   <ion-list>
     <ion-item-sliding *ngFor='let task of tasks | async'>
       <ion-item>
-        <ion-label>{{ task.title }}</ion-label>
-        <ion-checkbox (ionChange)="updateTask( task )" [checked]="task.done"></ion-checkbox>
+        <ion-label>{{ task.tasks }}</ion-label>
+        <ion-label>{{ task.id }}</ion-label>
+        <ion-checkbox (ionChange)="updateTask( task )" [checked]="task.id"></ion-checkbox>
       </ion-item>
        <ion-item-options>
         <button ion-button color="danger" (click)="removeTask( task )">
