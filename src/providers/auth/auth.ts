@@ -28,6 +28,9 @@ export class AuthProvider {
 //usuario 
 getCurrentUser(){
   return this.afAuth.authState;
+}
+  getUser(){
+  return this.afAuth.auth.currentUser.uid;
   }
  // Login de usuario
  loginUser(email:string, password:string){
