@@ -29,8 +29,8 @@
       <ion-item>
         <p>Codigo: {{ task.title }}</p>
         <p>Id Usuario:{{ task.id }}</p>
-        <p>Fecha:{{ task.fecha }}</p>
-        <p>Hora:{{ task.hora }}</p>
+        <p>Fecha:{{ task.fecha | date: "dd/MM/yyyy" }}</p>
+        <p>Hora:{{ task.hora}}</p>
       </ion-item>
        <ion-item-options>
         <button ion-button color="danger" (click)="removeTask( task )">
