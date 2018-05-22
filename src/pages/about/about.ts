@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, DateTime } from 'ionic-angular';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
+import { AuthProvider } from '../../providers/auth/auth';
 
 @Component({
   selector: 'page-about',
@@ -15,6 +16,9 @@ export class AboutPage {
   fecha: string = this.fechaCorta;
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
+  user : any ;
+  
+  
   
   
 
@@ -23,23 +27,29 @@ export class AboutPage {
       
       public navCtrl: NavController, 
       public alertCtrl: AlertController,
-      public database: AngularFireDatabase
-    ) {
-      this.tasksRef = this.database.list('tasks');
+      public database: AngularFireDatabase,
+      public auth : AuthProvider) {
+        this.auth.getCurrentUser().subscribe(user => 
+        this.user = user.uid);     
+      
+        this.tasksRef = this.database.list('tasks', 
+        ref => ref.orderByChild('id').equalTo("gk81XDASuDWuUlTWDNRyfJu2SO33"));
+
       this.tasks = this.tasksRef.snapshotChanges()
+
       .map(changes => {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       });
     }
   
-    pickId(id: string){
+    /*pickId(id: string){
       this.tasksRef = this.database.list('tasks', 
         ref => ref.orderByChild('id').equalTo(id));
         this.tasks = this.tasksRef.snapshotChanges()
       .map(changes => {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
       });
-    }
+    }*/
 
     createTask(){
       let newTaskModal = this.alertCtrl.create({

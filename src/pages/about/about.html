@@ -1,7 +1,8 @@
 <ion-header>
   <ion-navbar color="primary">
     <ion-title>
-      {{fecha.substr(0,10)}}
+      <!--{{fecha.substr(0,10)}}-->
+      {{user}}
       
     </ion-title>
     <ion-buttons start>
@@ -13,7 +14,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
+  <!--ion-list>
     <ion-item>
       <ion-label>IdUsuario</ion-label>
       <ion-select [(ngModel)]="id" (ionChange)="pickId(id)">
@@ -21,14 +22,14 @@
         <ion-option value="MLG0LPjzzFTuXeXCP1M9XxQZhkA2">MLG0LPjzzFTuXeXCP1M9XxQZhkA2</ion-option>
       </ion-select>
     </ion-item>
-  </ion-list>
+  </ion-list-->
 
   <ion-list>
     <ion-item-sliding *ngFor='let task of tasks | async'>
       <ion-item>
         <p>Codigo: {{ task.title }}</p>
         <p>Id Usuario:{{ task.id }}</p>
-        <p>Fecha:{{ task.fecha }}</p>
+        <p>Fecha:{{ task.fecha | date: "dd/MM/yyyy" }}</p>
       </ion-item>
        <ion-item-options>
         <button ion-button color="danger" (click)="removeTask( task )">
