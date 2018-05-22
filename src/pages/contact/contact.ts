@@ -18,15 +18,12 @@ export class ContactPage {
   createdCode = null;
   scannedCode = null;
   tasksRef: AngularFireList<any>;
-  tasksRef2: AngularFireList<any>;
   tasks: Observable<any[]>;
   user : any ;
   fechaCorta: string = new Date().toISOString();
   fecha: string = this.fechaCorta;
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
-  
-  
  
   constructor(
     private barcodeScanner: BarcodeScanner,
@@ -37,6 +34,7 @@ export class ContactPage {
       this.auth.getCurrentUser().subscribe(user => 
       this.user = user.uid);
       this.tasksRef = this.database.list('tasks');
+      /*ref => ref.orderByChild('id').equalTo(this.user));*/
       this.tasks = this.tasksRef.snapshotChanges()
       .map(changes => {
       return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -78,9 +76,10 @@ export class ContactPage {
           text: 'Save',
           handler: data => {
             this.tasksRef.push({
-              title: this.scannedCode + 'dos' ,
-              id: this.user,
-              fecha: this.fechaCorta
+              title: this.scannedCode+"prueba",
+              fecha: this.fechaCorta.substring(0,10),
+              hora: this.fecha.substring(11,19),
+              id: this.user
             });
           }
         }
@@ -92,7 +91,8 @@ export class ContactPage {
   updateTask( task ){
     this.tasksRef.update( task.key,{
       title: task.title,
-      fecha: this.fechaCorta
+      fecha: this.fechaCorta,
+      id: this.user
       
     });
   }
