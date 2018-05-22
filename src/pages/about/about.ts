@@ -2,14 +2,10 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, DateTime } from 'ionic-angular';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
-<<<<<<< HEAD
-import { AuthProvider } from '../../providers/auth/auth';
-=======
 import { Title } from '@angular/platform-browser';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
 
->>>>>>> 4bb294ed7edddb7e31a042dfb3a6072aaa9075c9
 
 @Component({
   selector: 'page-about',
@@ -25,42 +21,14 @@ export class AboutPage {
   fecha: string = this.fechaCorta;
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
-<<<<<<< HEAD
-  user : any ;
-  
-  
-  
-  
-
-
-=======
   user: any; 
  
  
->>>>>>> 4bb294ed7edddb7e31a042dfb3a6072aaa9075c9
   constructor(
       public navCtrl: NavController, 
       public alertCtrl: AlertController,
       public database: AngularFireDatabase,
       public auth : AuthProvider) {
-<<<<<<< HEAD
-        this.auth.getCurrentUser().subscribe(user => 
-        this.user = user.uid);     
-      
-        this.tasksRef = this.database.list('tasks', 
-        ref => ref.orderByChild('id').equalTo("gk81XDASuDWuUlTWDNRyfJu2SO33"));
-
-      this.tasks = this.tasksRef.snapshotChanges()
-
-      .map(changes => {
-        return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
-      });
-    }
-  
-    /*pickId(id: string){
-      this.tasksRef = this.database.list('tasks', 
-        ref => ref.orderByChild('id').equalTo(id));
-=======
       this.auth.getCurrentUser().subscribe(user => 
         this.user = user.uid);
       
@@ -68,14 +36,10 @@ export class AboutPage {
       /*this.tasksRef = this.database.list('tasks');*/
       this.tasksRef = this.database.list('tasks',
         ref => ref.orderByChild('id').equalTo (this.auth.getUser()));
->>>>>>> 4bb294ed7edddb7e31a042dfb3a6072aaa9075c9
         this.tasks = this.tasksRef.snapshotChanges()
       .map(changes => {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       });
-<<<<<<< HEAD
-    }*/
-=======
     }
     ionViewDidLoad() {
       let alert = this.alertCtrl.create({
@@ -86,7 +50,6 @@ export class AboutPage {
     });
     alert.present();
   }
->>>>>>> 4bb294ed7edddb7e31a042dfb3a6072aaa9075c9
 
   createTask(){
       let newTaskModal = this.alertCtrl.create({
