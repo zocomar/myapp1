@@ -74,6 +74,7 @@ export class AboutPage {
               this.tasksRef.push({
                 title: this.scannedCode,
                 fecha: this.minFecha.substr(0,10),
+                hora: this.fecha.substring(11,19),
                 id:this.user
               });
             }

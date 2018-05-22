@@ -92,6 +92,7 @@ export class ContactPage {
     this.tasksRef.update( task.key,{
       title: task.title,
       fecha: this.fechaCorta,
+      hora: this.fecha.substring(11,19),
       id: this.user
       
     });
