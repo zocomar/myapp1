@@ -93,8 +93,7 @@ getIonicDateTime(value: Date): string {
               this.tasksRef.push({
                 title: this.scannedCode,
                 fecha: this.minFecha.substr(0,10),
-                hora: this.fecha,
-                /*hora:this.getIonicDateTime,*/
+                hora:this.fecha,
                 id:this.user
               });
             }

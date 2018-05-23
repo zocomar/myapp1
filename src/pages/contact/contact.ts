@@ -96,8 +96,8 @@ export class ContactPage {
             this.tasksRef.push({
               title: this.scannedCode+"prueba",
               fecha: this.fechaCorta.substring(0,10),
+              /*hora: (new Date().getUTCHours()+2).toString(),*/
               hora: this.fecha,
-              /*hora: this.getIonicDateTime,*/
               id: this.user
             });
           }
@@ -111,7 +111,8 @@ export class ContactPage {
     this.tasksRef.update( task.key,{
       title: task.title,
       fecha: this.fechaCorta,
-      hora: this.fecha.substring(11,19),
+      /*hora: (new Date().getUTCHours()+2).toString(),*/
+      hora: this.fecha,
       id: this.user
       
     });
