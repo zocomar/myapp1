@@ -24,6 +24,7 @@ export class ContactPage {
   fecha: string = this.fechaCorta;
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
+  hora: string = (new Date().getUTCHours()+2).toString();
  
   constructor(
     private barcodeScanner: BarcodeScanner,
@@ -55,6 +56,23 @@ export class ContactPage {
         console.log('Error: ', err);
     });
   }
+  setIonicDateTime(value: string): Date {
+    if (value) {
+        let date: Date = new Date(value);
+        let ionicDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
+        return ionicDate;
+    }
+    return null;
+  }
+  getIonicDateTime(value: Date): string {
+    if (value) {
+        let date: Date = new Date(value);
+        let ionicDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
+        return ionicDate.toISOString();
+    }
+    return null;
+  }
+
   createTask(){
     let newTaskModal = this.alertCtrl.create({
       title: 'New Task',
@@ -78,7 +96,8 @@ export class ContactPage {
             this.tasksRef.push({
               title: this.scannedCode+"prueba",
               fecha: this.fechaCorta.substring(0,10),
-              hora: this.fecha.substring(11,19),
+              hora: this.fecha,
+              /*hora: this.getIonicDateTime,*/
               id: this.user
             });
           }

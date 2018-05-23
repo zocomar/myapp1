@@ -22,6 +22,7 @@ export class AboutPage {
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
   user: any; 
+  
  
  
   constructor(
@@ -51,6 +52,24 @@ export class AboutPage {
     alert.present();
   }
 
+  setIonicDateTime(value: string): Date {
+    if (value) {
+        let date: Date = new Date(value);
+        let ionicDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
+        return ionicDate;
+    }
+    return null;
+}
+getIonicDateTime(value: Date): string {
+    if (value) {
+        let date: Date = new Date(value);
+        let ionicDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
+        return ionicDate.toISOString();
+    }
+    return null;
+}
+
+
   createTask(){
       let newTaskModal = this.alertCtrl.create({
         title: 'New Task',
@@ -74,7 +93,8 @@ export class AboutPage {
               this.tasksRef.push({
                 title: this.scannedCode,
                 fecha: this.minFecha.substr(0,10),
-                hora: this.fecha.substring(11,19),
+                hora: this.fecha,
+                /*hora:this.getIonicDateTime,*/
                 id:this.user
               });
             }
