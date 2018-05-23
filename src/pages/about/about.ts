@@ -19,7 +19,7 @@ export class AboutPage {
   tasks: Observable<any[]>;
   fechaCorta: string = new Date().toISOString();
   fecha: string = this.fechaCorta;
-  minFecha: string = (new Date().getFullYear()-5).toString();
+  minFecha: string = (new Date().getUTCMinutes()).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
   user: any; 
   
@@ -45,8 +45,8 @@ export class AboutPage {
     ionViewDidLoad() {
       let alert = this.alertCtrl.create({
       /*title: this.user,*/
-      title: this.user,
-      subTitle: 'Este es el usuario activo',
+      title: this.minFecha,
+      subTitle: 'Este es la hora actual',
       buttons: ['Dismiss'],
     });
     alert.present();
@@ -59,21 +59,21 @@ export class AboutPage {
         return ionicDate;
     }
     return null;
-}
-getIonicDateTime(value: Date): string {
+    }
+  getIonicDateTime(value: Date): string {
     if (value) {
         let date: Date = new Date(value);
         let ionicDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
         return ionicDate.toISOString();
     }
     return null;
-}
+    }
 
 
   createTask(){
       let newTaskModal = this.alertCtrl.create({
         title: 'New Task',
-        message: "Enter a title for your new task again",
+        message: "Enter a title for your 2new task again",
         inputs: [
           {
             name: 'title',
@@ -93,7 +93,7 @@ getIonicDateTime(value: Date): string {
               this.tasksRef.push({
                 title: this.scannedCode,
                 fecha: this.minFecha.substr(0,10),
-                hora:this.fecha,
+                hora:Date(),
                 id:this.user
               });
             }
