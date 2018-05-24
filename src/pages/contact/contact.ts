@@ -5,6 +5,8 @@ import { Camera } from '@ionic-native/camera';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AuthProvider } from '../../providers/auth/auth';
+import { AboutPage } from '../about/about';
+
 
 
 
@@ -26,8 +28,15 @@ export class ContactPage {
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
   hora: string = (new Date().getUTCHours()+2).toString();
+<<<<<<< HEAD
   testCheckboxOpen: any;
   testCheckboxResult:any;
+=======
+  testRadioOpen = false;
+  testRadioResult: any;
+  testCheckboxOpen = false;
+  testCheckboxResult: any;
+>>>>>>> 7abd1cc499d1e8ba6b7e951ef0bde8fd66766f34
  
   constructor(
     private barcodeScanner: BarcodeScanner,
@@ -52,14 +61,96 @@ export class ContactPage {
     this.createdCode = this.qrData;
   }
  
-  
+  MostrarAlerta() {
+    let alert = this.alertCtrl.create({
+    /*title: this.user,*/
+    title: '¡GRACIAS!',
+    subTitle: 'Hemos registrado tu lavado',
+    buttons: ['Aceptar'],
+  });
+  alert.present();
+  this.goToSecondPage();
+}
+
+  goToSecondPage() {
+  this.navCtrl.push(AboutPage);
+  }
+
+  doRadio() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Lightsaber color');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'NORMAL FRIO',
+      value: 'blue',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'NORMAL 30º',
+      value: 'green'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'NORMAL 40º',
+      value: 'red'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'DELICADO FRIO',
+      value: 'yellow'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'PIELES SENSIBLES',
+      value: 'purple'
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Ok',
+      handler: (data: any) => {
+        console.log('Radio data:', data);
+        // // this.barcodeScanner.scan().then(barcodeData => {
+        // //   this.scannedCode = barcodeData.text;
+        // });
+        this.testRadioOpen = false;
+        this.testRadioResult = data;
+        this.tasksRef.push({
+          title: this.scannedCode+" "+"prueba",
+          fecha: this.fechaCorta.substring(0,10),
+          hora: Date(),
+          /*hora: this.fecha,*/
+          id: this.user,
+          lavado: this.testRadioResult
+        });
+        this.MostrarAlerta();
+        
+      }
+    });
+
+    alert.present();
+    
+  }
+
+
+
+
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       this.scannedCode = barcodeData.text;
+      this.doRadio()
     }, (err) => {
         console.log('Error: ', err);
     });
+    
   }
+<<<<<<< HEAD
   setIonicDateTime(value: string): Date {
     if (value) {
         let date: Date = new Date(value);
@@ -79,6 +170,10 @@ export class ContactPage {
 
   
     createTask(){
+=======
+  
+  createTask(){
+>>>>>>> 7abd1cc499d1e8ba6b7e951ef0bde8fd66766f34
     let newTaskModal = this.alertCtrl.create({
       title: 'Elige tu lavado',
       message: "Seleccione el lavado que has puesto",
@@ -100,17 +195,20 @@ export class ContactPage {
           text: 'Save',
           handler: data => {
             this.tasksRef.push({
-              title: this.scannedCode+"prueba",
+              title: this.scannedCode+" "+"prueba",
               fecha: this.fechaCorta.substring(0,10),
               hora: Date(),
               /*hora: this.fecha,*/
-              id: this.user
+              id: this.user,
+              lavado: this.testRadioResult
             });
+            
           }
         }
       ]
     });
     newTaskModal.present( newTaskModal );
+    
   }
 
   updateTask( task ){
@@ -119,7 +217,8 @@ export class ContactPage {
       fecha: this.fechaCorta,
       /*hora: (new Date().getUTCHours()+2).toString(),*/
       hora: this.fecha,
-      id: this.user
+      id: this.user,
+      lavado: this.testRadioResult
       
     });
   }

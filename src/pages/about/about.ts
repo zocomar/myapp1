@@ -42,35 +42,17 @@ export class AboutPage {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       });
     }
-    ionViewDidLoad() {
-      let alert = this.alertCtrl.create({
-      /*title: this.user,*/
-      title: this.minFecha,
-      subTitle: 'Este es la hora actual',
-      buttons: ['Dismiss'],
-    });
-    alert.present();
-  }
+  //   ionViewDidLoad() {
+  //     let alert = this.alertCtrl.create({
+  //     /*title: this.user,*/
+  //     title: this.minFecha,
+  //     subTitle: 'Este es la hora actual',
+  //     buttons: ['Dismiss'],
+  //   });
+  //   alert.present();
+  // }
 
-  setIonicDateTime(value: string): Date {
-    if (value) {
-        let date: Date = new Date(value);
-        let ionicDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
-        return ionicDate;
-    }
-    return null;
-    }
-  getIonicDateTime(value: Date): string {
-    if (value) {
-        let date: Date = new Date(value);
-        let ionicDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
-        return ionicDate.toISOString();
-    }
-    return null;
-    }
-
-
-  createTask(){
+    createTask(){
       let newTaskModal = this.alertCtrl.create({
         title: 'New Task',
         message: "Enter a title for your 2new task again",
