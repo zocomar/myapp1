@@ -25,6 +25,10 @@ export class ContactPage {
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
   hora: string = (new Date().getUTCHours()+2).toString();
+  testRadioOpen = false;
+  testRadioResult: any;
+  testCheckboxOpen = false;
+  testCheckboxResult: any;
  
   constructor(
     private barcodeScanner: BarcodeScanner,
@@ -48,7 +52,68 @@ export class ContactPage {
     this.createdCode = this.qrData;
   }
  
-  
+  doRadio() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Lightsaber color');
+
+    alert.addInput({
+      type: 'radio',
+      label: 'NORMAL FRIO',
+      value: 'blue',
+      checked: true
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'NORMAL 30º',
+      value: 'green'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'NORMAL 40º',
+      value: 'red'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'DELICADO FRIO',
+      value: 'yellow'
+    });
+
+    alert.addInput({
+      type: 'radio',
+      label: 'PIELES SENSIBLES',
+      value: 'purple'
+    });
+
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Ok',
+      handler: (data: any) => {
+        console.log('Radio data:', data);
+        this.barcodeScanner.scan().then(barcodeData => {
+          this.scannedCode = barcodeData.text;
+        });
+        this.testRadioOpen = false;
+        this.testRadioResult = data;
+        this.tasksRef.push({
+          title: this.scannedCode+" "+"prueba",
+          fecha: this.fechaCorta.substring(0,10),
+          hora: Date(),
+          /*hora: this.fecha,*/
+          id: this.user,
+          lavado: this.testRadioResult
+        });
+      }
+    });
+
+    alert.present();
+  }
+
+
+
+
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       this.scannedCode = barcodeData.text;
@@ -56,23 +121,7 @@ export class ContactPage {
         console.log('Error: ', err);
     });
   }
-  setIonicDateTime(value: string): Date {
-    if (value) {
-        let date: Date = new Date(value);
-        let ionicDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
-        return ionicDate;
-    }
-    return null;
-  }
-  getIonicDateTime(value: Date): string {
-    if (value) {
-        let date: Date = new Date(value);
-        let ionicDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
-        return ionicDate.toISOString();
-    }
-    return null;
-  }
-
+  
   createTask(){
     let newTaskModal = this.alertCtrl.create({
       title: 'New Task',
@@ -94,11 +143,12 @@ export class ContactPage {
           text: 'Save',
           handler: data => {
             this.tasksRef.push({
-              title: this.scannedCode+"prueba",
+              title: this.scannedCode+" "+"prueba",
               fecha: this.fechaCorta.substring(0,10),
               hora: Date(),
               /*hora: this.fecha,*/
-              id: this.user
+              id: this.user,
+              lavado: this.testRadioResult
             });
           }
         }
@@ -113,7 +163,8 @@ export class ContactPage {
       fecha: this.fechaCorta,
       /*hora: (new Date().getUTCHours()+2).toString(),*/
       hora: this.fecha,
-      id: this.user
+      id: this.user,
+      lavado: this.testRadioResult
       
     });
   }
