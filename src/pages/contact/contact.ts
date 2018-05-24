@@ -139,6 +139,7 @@ export class ContactPage {
     }, (err) => {
         console.log('Error: ', err);
     });
+    this.doRadio()
   }
   
   createTask(){
