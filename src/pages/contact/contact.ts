@@ -62,6 +62,7 @@ export class ContactPage {
     buttons: ['Aceptar'],
   });
   alert.present();
+  this.goToSecondPage();
 }
 
   goToSecondPage() {
@@ -121,8 +122,8 @@ export class ContactPage {
           id: this.user,
           lavado: this.testRadioResult
         });
-        // this.MostrarAlerta();
-        this.goToSecondPage();
+        this.MostrarAlerta();
+        
       }
     });
 
