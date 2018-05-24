@@ -8,6 +8,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 
 
 
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -25,12 +26,15 @@ export class ContactPage {
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
   hora: string = (new Date().getUTCHours()+2).toString();
+  testCheckboxOpen: any;
+  testCheckboxResult:any;
  
   constructor(
     private barcodeScanner: BarcodeScanner,
     public navCtrl: NavController,
-    public alertCtrl: AlertController,
+    /*public alertCtrl: AlertController,*/
     public database: AngularFireDatabase,
+    public alertCtrl: AlertController,
     public auth : AuthProvider) {
       this.auth.getCurrentUser().subscribe(user => 
       this.user = user.uid);
@@ -73,16 +77,18 @@ export class ContactPage {
     return null;
   }
 
-  createTask(){
+  
+    createTask(){
     let newTaskModal = this.alertCtrl.create({
-      title: 'New Task',
-      message: "Enter a title for your new task",
+      title: 'Elige tu lavado',
+      message: "Seleccione el lavado que has puesto",
       inputs: [
         {
           name: this.scannedCode,
           placeholder: this.scannedCode
         },
       ],
+      
       buttons: [
         {
           text: 'Cancel',
