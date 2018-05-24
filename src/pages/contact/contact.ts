@@ -57,8 +57,8 @@ export class ContactPage {
   MostrarAlerta() {
     let alert = this.alertCtrl.create({
     /*title: this.user,*/
-    title: this.minFecha,
-    subTitle: 'Gracias, Hemos registrado tu lavado',
+    title: '¡GRACIAS!',
+    subTitle: 'Hemos registrado tu lavado',
     buttons: ['Aceptar'],
   });
   alert.present();
@@ -137,10 +137,11 @@ export class ContactPage {
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       this.scannedCode = barcodeData.text;
+      this.doRadio()
     }, (err) => {
         console.log('Error: ', err);
     });
-    this.doRadio()
+    
   }
   
   createTask(){
