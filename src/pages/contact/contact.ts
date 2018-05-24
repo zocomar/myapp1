@@ -28,15 +28,10 @@ export class ContactPage {
   minFecha: string = (new Date().getFullYear()-5).toString();
   maxFecha: string = (new Date().getFullYear()+5).toString();
   hora: string = (new Date().getUTCHours()+2).toString();
-<<<<<<< HEAD
-  testCheckboxOpen: any;
-  testCheckboxResult:any;
-=======
   testRadioOpen = false;
   testRadioResult: any;
   testCheckboxOpen = false;
   testCheckboxResult: any;
->>>>>>> 7abd1cc499d1e8ba6b7e951ef0bde8fd66766f34
  
   constructor(
     private barcodeScanner: BarcodeScanner,
@@ -150,30 +145,8 @@ export class ContactPage {
     });
     
   }
-<<<<<<< HEAD
-  setIonicDateTime(value: string): Date {
-    if (value) {
-        let date: Date = new Date(value);
-        let ionicDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate(), date.getUTCHours(), date.getUTCMinutes(), date.getUTCSeconds(), date.getUTCMilliseconds());
-        return ionicDate;
-    }
-    return null;
-  }
-  getIonicDateTime(value: Date): string {
-    if (value) {
-        let date: Date = new Date(value);
-        let ionicDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate(), date.getHours(), date.getMinutes(), date.getSeconds(), date.getMilliseconds()));
-        return ionicDate.toISOString();
-    }
-    return null;
-  }
-
-  
-    createTask(){
-=======
   
   createTask(){
->>>>>>> 7abd1cc499d1e8ba6b7e951ef0bde8fd66766f34
     let newTaskModal = this.alertCtrl.create({
       title: 'Elige tu lavado',
       message: "Seleccione el lavado que has puesto",
