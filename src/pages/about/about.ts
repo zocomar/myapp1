@@ -42,15 +42,15 @@ export class AboutPage {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }))
       });
     }
-    ionViewDidLoad() {
-      let alert = this.alertCtrl.create({
-      /*title: this.user,*/
-      title: this.minFecha,
-      subTitle: 'Este es la hora actual',
-      buttons: ['Dismiss'],
-    });
-    alert.present();
-  }
+  //   ionViewDidLoad() {
+  //     let alert = this.alertCtrl.create({
+  //     /*title: this.user,*/
+  //     title: this.minFecha,
+  //     subTitle: 'Este es la hora actual',
+  //     buttons: ['Dismiss'],
+  //   });
+  //   alert.present();
+  // }
 
     createTask(){
       let newTaskModal = this.alertCtrl.create({

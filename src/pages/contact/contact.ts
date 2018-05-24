@@ -5,6 +5,7 @@ import { Camera } from '@ionic-native/camera';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AuthProvider } from '../../providers/auth/auth';
+import { AboutPage } from '../about/about';
 
 
 
@@ -57,13 +58,15 @@ export class ContactPage {
     let alert = this.alertCtrl.create({
     /*title: this.user,*/
     title: this.minFecha,
-    subTitle: 'Este es la hora actual',
-    buttons: ['Dismiss'],
+    subTitle: 'Gracias, Hemos registrado tu lavado',
+    buttons: ['Aceptar'],
   });
   alert.present();
 }
 
-
+  goToSecondPage() {
+  this.navCtrl.push(AboutPage);
+  }
 
   doRadio() {
     let alert = this.alertCtrl.create();
@@ -118,7 +121,8 @@ export class ContactPage {
           id: this.user,
           lavado: this.testRadioResult
         });
-        this.MostrarAlerta();
+        // this.MostrarAlerta();
+        this.goToSecondPage();
       }
     });
 
