@@ -8,6 +8,7 @@ import { AuthProvider } from '../../providers/auth/auth';
 
 
 
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -52,6 +53,18 @@ export class ContactPage {
     this.createdCode = this.qrData;
   }
  
+  MostrarAlerta() {
+    let alert = this.alertCtrl.create({
+    /*title: this.user,*/
+    title: this.minFecha,
+    subTitle: 'Este es la hora actual',
+    buttons: ['Dismiss'],
+  });
+  alert.present();
+}
+
+
+
   doRadio() {
     let alert = this.alertCtrl.create();
     alert.setTitle('Lightsaber color');
@@ -92,9 +105,9 @@ export class ContactPage {
       text: 'Ok',
       handler: (data: any) => {
         console.log('Radio data:', data);
-        this.barcodeScanner.scan().then(barcodeData => {
-          this.scannedCode = barcodeData.text;
-        });
+        // // this.barcodeScanner.scan().then(barcodeData => {
+        // //   this.scannedCode = barcodeData.text;
+        // });
         this.testRadioOpen = false;
         this.testRadioResult = data;
         this.tasksRef.push({
@@ -105,10 +118,12 @@ export class ContactPage {
           id: this.user,
           lavado: this.testRadioResult
         });
+        this.MostrarAlerta();
       }
     });
 
     alert.present();
+    
   }
 
 
@@ -150,11 +165,13 @@ export class ContactPage {
               id: this.user,
               lavado: this.testRadioResult
             });
+            
           }
         }
       ]
     });
     newTaskModal.present( newTaskModal );
+    
   }
 
   updateTask( task ){
