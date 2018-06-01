@@ -10,6 +10,7 @@ import { AboutPage } from '../about/about';
 
 
 
+
 @Component({
   selector: 'page-contact',
   templateUrl: 'contact.html'
@@ -35,8 +36,9 @@ export class ContactPage {
   constructor(
     private barcodeScanner: BarcodeScanner,
     public navCtrl: NavController,
-    public alertCtrl: AlertController,
+    /*public alertCtrl: AlertController,*/
     public database: AngularFireDatabase,
+    public alertCtrl: AlertController,
     public auth : AuthProvider) {
       this.auth.getCurrentUser().subscribe(user => 
       this.user = user.uid);
@@ -146,14 +148,15 @@ export class ContactPage {
   
   createTask(){
     let newTaskModal = this.alertCtrl.create({
-      title: 'New Task',
-      message: "Enter a title for your new task",
+      title: 'Elige tu lavado',
+      message: "Seleccione el lavado que has puesto",
       inputs: [
         {
           name: this.scannedCode,
           placeholder: this.scannedCode
         },
       ],
+      
       buttons: [
         {
           text: 'Cancel',
