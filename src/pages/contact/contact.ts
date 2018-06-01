@@ -6,6 +6,7 @@ import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
 import { Observable } from 'rxjs/Observable';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AboutPage } from '../about/about';
+import { TimerProgress } from '../timer-progress/timer-progress';
 
 
 
@@ -68,7 +69,7 @@ export class ContactPage {
 }
 
   goToSecondPage() {
-  this.navCtrl.push(AboutPage);
+  this.navCtrl.push(TimerProgress);
   }
 
   doRadio() {
@@ -108,7 +109,7 @@ export class ContactPage {
 
     alert.addButton('Cancel');
     alert.addButton({
-      text: 'Ok',
+      text: 'Ok.Avisame',
       handler: (data: any) => {
         console.log('Radio data:', data);
         // // this.barcodeScanner.scan().then(barcodeData => {
