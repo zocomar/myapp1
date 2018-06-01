@@ -20,6 +20,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { Timer } from '../pages/timer/timer';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCODIQiBPPdPUzVV464Pq7K-XqGLuasJmM",
@@ -37,7 +38,8 @@ const firebaseConfig = {
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    Timer
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ const firebaseConfig = {
     AboutPage,
     ContactPage,
     HomePage,
-    TabsPage
+    TabsPage,
+    Timer
   ],
   providers: [
     StatusBar,
