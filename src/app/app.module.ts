@@ -21,6 +21,7 @@ import { AngularFireAuthModule } from 'angularfire2/auth';
 import { AuthProvider } from '../providers/auth/auth';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Timer } from '../pages/timer/timer';
+import { TimerProgress } from '../pages/timer-progress/timer-progress';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCODIQiBPPdPUzVV464Pq7K-XqGLuasJmM",
@@ -39,7 +40,7 @@ const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
-    Timer
+    Timer,TimerProgress
   ],
   imports: [
     BrowserModule,
@@ -57,7 +58,8 @@ const firebaseConfig = {
     ContactPage,
     HomePage,
     TabsPage,
-    Timer
+    Timer,
+    TimerProgress
   ],
   providers: [
     StatusBar,

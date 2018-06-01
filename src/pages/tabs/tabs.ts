@@ -3,6 +3,8 @@ import { AboutPage } from '../about/about';
 import { ContactPage } from '../contact/contact';
 import { HomePage } from '../home/home';
 import { Timer } from '../timer/timer';
+import { TimerProgress } from '../timer-progress/timer-progress';
+
 
 
 
@@ -14,7 +16,7 @@ export class TabsPage {
   tab1Root = HomePage;
   tab2Root = AboutPage;
   tab3Root = ContactPage;
-  tab4Root = Timer;
+  tab4Root = TimerProgress;
   
 
   constructor() {
