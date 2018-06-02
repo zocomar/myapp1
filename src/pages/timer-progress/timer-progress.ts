@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavController, NavParams } from 'ionic-angular';
 
 export interface CountdownTimer {
   seconds: number;
@@ -8,6 +9,7 @@ export interface CountdownTimer {
   hasStarted: boolean;
   hasFinished: boolean;
   displayTime: string;
+  
 }
 
 @Component({
@@ -16,13 +18,20 @@ export interface CountdownTimer {
 })
 export class TimerProgress {
 
+  unTexto: string; 
+  unNumeroRecibido: number;
   @Input() timeInSeconds: number;
   timer: CountdownTimer;
   private increment;
   private transform;
   private percent;
   private fixTransform;
-  constructor(private sanitizer: DomSanitizer) { }
+  
+ 
+  constructor(params:NavParams,
+    private sanitizer: DomSanitizer,
+    public navCtrl: NavController)
+    {this.unTexto = params.get('unTexto'); }
 
   ngOnInit() {
     this.initTimer();

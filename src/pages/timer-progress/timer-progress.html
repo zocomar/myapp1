@@ -6,12 +6,13 @@
 </ion-navbar>
 </ion-header>
 <ion-content>
-    <div text-center>
-        Tu lavado comenzó a las:
-      </div>
+    <div style="text-align: center;">
+        <h5>Tu lavado comenzó a las:</h5>
+        <h5>{{unTexto | date:"HH:mm:ss"}}</h5>
+    </div>
 </ion-content>
-<ion-content padding>
-<ion-card *ngIf="timer">
+<ion-content style="position: absolute; top: 90px;">
+    <ion-card *ngIf="timer">
 	<ion-card-header>
          <div class="radial-progress" data-progress="0">
             <div class="circle">

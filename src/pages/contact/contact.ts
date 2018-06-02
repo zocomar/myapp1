@@ -33,6 +33,7 @@ export class ContactPage {
   testRadioResult: any;
   testCheckboxOpen = false;
   testCheckboxResult: any;
+  unTexto: string="Hola";
  
   constructor(
     private barcodeScanner: BarcodeScanner,
@@ -69,12 +70,12 @@ export class ContactPage {
 }
 
   goToSecondPage() {
-  this.navCtrl.push(TimerProgress);
+  this.navCtrl.push(TimerProgress,{'unTexto': this.fecha});
   }
 
   doRadio() {
     let alert = this.alertCtrl.create();
-    alert.setTitle('Lightsaber color');
+    alert.setTitle('Selecciona tu Lavado');
 
     alert.addInput({
       type: 'radio',
