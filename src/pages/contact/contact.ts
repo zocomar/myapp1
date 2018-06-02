@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AboutPage } from '../about/about';
 import { TimerProgress } from '../timer-progress/timer-progress';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 
 
@@ -37,11 +38,13 @@ export class ContactPage {
  
   constructor(
     private barcodeScanner: BarcodeScanner,
+    private nativeAudio: NativeAudio,
     public navCtrl: NavController,
     /*public alertCtrl: AlertController,*/
     public database: AngularFireDatabase,
     public alertCtrl: AlertController,
     public auth : AuthProvider) {
+      this.nativeAudio.preloadSimple('uniqueId1', '../../assets/sound/Alarm.mp3');
       this.auth.getCurrentUser().subscribe(user => 
       this.user = user.uid);
       this.tasksRef = this.database.list('tasks');
@@ -52,7 +55,7 @@ export class ContactPage {
 });
   }
   
-  
+ 
  
   createCode() {
     this.createdCode = this.qrData;
@@ -62,10 +65,11 @@ export class ContactPage {
     let alert = this.alertCtrl.create({
     /*title: this.user,*/
     title: '¡GRACIAS!',
-    subTitle: 'Hemos registrado tu lavado',
+    subTitle: 'Hemos registrado tu lavado. Te avisaremos en 30 min.',
     buttons: ['Aceptar'],
   });
   alert.present();
+  this.nativeAudio.play('uniqueId1');
   this.goToSecondPage();
 }
 

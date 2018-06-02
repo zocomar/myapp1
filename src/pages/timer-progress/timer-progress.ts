@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavController, NavParams } from 'ionic-angular';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 export interface CountdownTimer {
   seconds: number;
@@ -35,6 +36,7 @@ export class TimerProgress {
 
   ngOnInit() {
     this.initTimer();
+    this.startTimer();
   }
 
   hasFinished() {
@@ -90,6 +92,7 @@ export class TimerProgress {
       if (this.timer.secondsRemaining > 0) {
         this.timerTick();
       } else {
+
         this.timer.hasFinished = true;
       }
     }, 1000);

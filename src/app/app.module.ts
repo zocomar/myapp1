@@ -22,6 +22,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { Timer } from '../pages/timer/timer';
 import { TimerProgress } from '../pages/timer-progress/timer-progress';
+import { NativeAudio } from '@ionic-native/native-audio';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCODIQiBPPdPUzVV464Pq7K-XqGLuasJmM",
@@ -68,7 +69,8 @@ const firebaseConfig = {
     BarcodeScanner,
     NgxQRCodeModule,
     AuthProvider,
-    AuthServiceProvider
+    AuthServiceProvider,
+    NativeAudio
   ]
 })
 export class AppModule {}
