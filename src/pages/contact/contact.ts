@@ -44,7 +44,7 @@ export class ContactPage {
     public database: AngularFireDatabase,
     public alertCtrl: AlertController,
     public auth : AuthProvider) {
-      this.nativeAudio.preloadSimple('uniqueId1', '../../assets/sound/Alarm.mp3');
+      this.nativeAudio.preloadComplex('uniqueId1', '../../assets/sound/Alarm.mp3',1,1,0);
       this.auth.getCurrentUser().subscribe(user => 
       this.user = user.uid);
       this.tasksRef = this.database.list('tasks');
@@ -62,14 +62,23 @@ export class ContactPage {
   }
  
   MostrarAlerta() {
+    this.nativeAudio.play('uniqueId1').then((res) => {
+      console.log(res);
+    }, (err) => {
+      console.log(err);
+    });
     let alert = this.alertCtrl.create({
     /*title: this.user,*/
     title: '¡GRACIAS!',
     subTitle: 'Hemos registrado tu lavado. Te avisaremos en 30 min.',
     buttons: ['Aceptar'],
   });
+  
+
   alert.present();
-  this.nativeAudio.play('uniqueId1');
+  
+    
+ 
   this.goToSecondPage();
 }
 
