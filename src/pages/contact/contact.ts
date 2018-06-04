@@ -69,10 +69,10 @@ export class ContactPage {
     
   });
   
-
+  this.scheduleNot();
   alert.present();
- 
-  this.goToSecondPage();
+  
+  // this.goToSecondPage();
 }
 
   goToSecondPage() {
@@ -85,7 +85,7 @@ export class ContactPage {
       id:1,
       title:'Atencion',
       text:'Martin Notificacion',
-      trigger: {at: new Date(new Date().getTime() + 36)},
+      trigger: {at: new Date(new Date().getTime() + 3600)},
     });
   }
 
@@ -142,8 +142,8 @@ export class ContactPage {
           id: this.user,
           lavado: this.testRadioResult
         });
-        this.MostrarAlerta();
-        
+        // this.MostrarAlerta();
+        this.scheduleNot();
       }
     });
 
