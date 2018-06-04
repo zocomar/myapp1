@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, AlertController } from 'ionic-angular';
+import { NavController, AlertController, Platform } from 'ionic-angular';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Camera } from '@ionic-native/camera';
 import { AngularFireList, AngularFireDatabase } from 'angularfire2/database';
@@ -7,7 +7,7 @@ import { Observable } from 'rxjs/Observable';
 import { AuthProvider } from '../../providers/auth/auth';
 import { AboutPage } from '../about/about';
 import { TimerProgress } from '../timer-progress/timer-progress';
-import { NativeAudio } from '@ionic-native/native-audio';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 
 
@@ -38,13 +38,13 @@ export class ContactPage {
  
   constructor(
     private barcodeScanner: BarcodeScanner,
-    private nativeAudio: NativeAudio,
+    private localNotifications: LocalNotifications,private plt: Platform,
     public navCtrl: NavController,
     /*public alertCtrl: AlertController,*/
     public database: AngularFireDatabase,
     public alertCtrl: AlertController,
     public auth : AuthProvider) {
-      this.nativeAudio.preloadComplex('uniqueId1', '../../assets/sound/Alarm.mp3',1,1,0);
+      
       this.auth.getCurrentUser().subscribe(user => 
       this.user = user.uid);
       this.tasksRef = this.database.list('tasks');
@@ -62,28 +62,31 @@ export class ContactPage {
   }
  
   MostrarAlerta() {
-    this.nativeAudio.play('uniqueId1').then((res) => {
-      console.log(res);
-    }, (err) => {
-      console.log(err);
-    });
     let alert = this.alertCtrl.create({
-    /*title: this.user,*/
     title: '¡GRACIAS!',
     subTitle: 'Hemos registrado tu lavado. Te avisaremos en 30 min.',
     buttons: ['Aceptar'],
+    
   });
   
 
   alert.present();
-  
-    
  
   this.goToSecondPage();
 }
 
   goToSecondPage() {
+  this.scheduleNot();
   this.navCtrl.push(TimerProgress,{'unTexto': this.fecha});
+  }
+
+  scheduleNot(){
+    this.localNotifications.schedule({
+      id:1,
+      title:'Atencion',
+      text:'Martin Notificacion',
+      trigger: {at: new Date(new Date().getTime() + 36)},
+    });
   }
 
   doRadio() {

@@ -8,8 +8,9 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 
 
-
+declare var cordova;
 @Component({
+  
   templateUrl: 'app.html'
 })
 export class MyApp {
