@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NavController, NavParams } from 'ionic-angular';
 import { NativeAudio } from '@ionic-native/native-audio';
+import { LocalNotifications } from '@ionic-native/local-notifications';
 
 export interface CountdownTimer {
   seconds: number;
@@ -28,15 +29,18 @@ export class TimerProgress {
   private percent;
   private fixTransform;
   
+  
  
   constructor(params:NavParams,
     private sanitizer: DomSanitizer,
+    private localNotifications: LocalNotifications,
     public navCtrl: NavController)
     {this.unTexto = params.get('unTexto'); }
 
   ngOnInit() {
     this.initTimer();
     this.startTimer();
+    
   }
 
   hasFinished() {
@@ -62,6 +66,13 @@ export class TimerProgress {
       secondsRemaining: this.timeInSeconds
     };
 
+    this.localNotifications.schedule({
+      id: 1,
+      text: 'untexto',
+      trigger: {at: new Date(new Date().getTime() + 5*1000)},
+      /*sound:  'file://sound.mp3': 'file://beep.caf',*/
+      data: { message: '125' }
+    });
     this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
   }
 
@@ -97,6 +108,8 @@ export class TimerProgress {
       }
     }, 1000);
   }
+
+  
 
   getSecondsAsDigitalClock(inputSeconds: number) {
     const secNum = parseInt(inputSeconds.toString(), 10); // don't forget the second param
