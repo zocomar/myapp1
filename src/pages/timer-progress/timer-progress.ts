@@ -66,13 +66,7 @@ export class TimerProgress {
       secondsRemaining: this.timeInSeconds
     };
 
-    this.localNotifications.schedule({
-      id: 1,
-      text: 'untexto',
-      trigger: {at: new Date(new Date().getTime() + 5*1000)},
-      /*sound:  'file://sound.mp3': 'file://beep.caf',*/
-      data: { message: '125' }
-    });
+    
     this.timer.displayTime = this.getSecondsAsDigitalClock(this.timer.secondsRemaining);
   }
 
@@ -80,6 +74,13 @@ export class TimerProgress {
     this.timer.hasStarted = true;
     this.timer.runTimer = true;
     this.timerTick();
+    this.localNotifications.schedule({
+      id: 1,
+      text: 'untexto',
+      trigger: {at: new Date(new Date().getTime() + 5*1000)},
+      /*sound:  'file://sound.mp3': 'file://beep.caf',*/
+      data: { message: '125' }
+    });
   }
 
   pauseTimer() {
