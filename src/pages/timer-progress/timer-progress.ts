@@ -79,7 +79,7 @@ export class TimerProgress {
       text: 'Tu Lavado ha acabado',
       trigger: {at: new Date(new Date().getTime() + 30*1000)},
       launch: true,
-      /*sound:  'file://sound.mp3': 'file://beep.caf',*/
+      sound:  'file://not1.mp3',
       data: { message: '125' }
     });
   }
